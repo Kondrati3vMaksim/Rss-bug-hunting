@@ -21,21 +21,21 @@ function getFiltered() {
   const search = searchInput.value;
   const category = categorySelect.value;
   const sort = sortSelect.value;
-  console.log(sort);
-  if (search.toLowerCase()) {
-    console.log(search);
-    result = result.filter((p) => p.name.toLowerCase().includes(search));
+  if (search) {
+    result = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
   }
 
   if (category !== 'all') {
-    result = products.filter((p) => p.category === category);
+    result = result.filter((p) => p.category === category);
   }
-
+  const copyForSort = [...result];
   if (sort === 'asc') {
-    result.sort((a, b) => a.price - b.price);
+    result = copyForSort.sort((a, b) => a.price - b.price);
   } else if (sort === 'desc') {
-    result.sort((a, b) => b.price - a.price);
-  } 
+    result = copyForSort.sort((a, b) => b.price - a.price);
+  } else if (sort === 'default') {
+    return result;
+  }
   return result;
 }
 
@@ -49,7 +49,7 @@ function render() {
     grid.appendChild(card);
   });
 
-  countEl.textContent = products.length;
+  countEl.textContent = items.length;
 }
 
 searchInput.addEventListener('input', render);
@@ -58,6 +58,9 @@ sortSelect.addEventListener('change', render);
 
 resetBtn.addEventListener('click', () => {
   searchInput.value = '';
+  sortSelect.value = 'default';
+  categorySelect.value = 'all';
+  render();
 });
 
 render();
