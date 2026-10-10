@@ -12,7 +12,9 @@ Bug Hunting — учебный проект курса **RS School Fullstack Eng
 
 ## Демонстрация
 
-**Деплой:** ссылка будет добавлена после публикации проекта.
+**Деплой:** 
+
+https://kondrati3vmaksim.github.io/Rss-bug-hunting/index.html
 
 ## Технологии
 
